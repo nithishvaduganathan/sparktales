@@ -32,5 +32,12 @@ export const courses = [
     progress: 30,
     image: pythonImg,
   },
+  {
+    id: 5,
+    title: "Data Analyst",
+    description: "Python, Power BI, Data Visualization",
+    progress: 40,
+    image: pythonImg,
+  },
 ];
 

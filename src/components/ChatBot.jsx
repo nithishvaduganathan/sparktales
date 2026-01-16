@@ -1,24 +1,37 @@
-function Chatbot({ onClose }) {
+import { useState } from "react";
+import { Bot } from "lucide-react";
+
+function ChatBot() {
+  const [open, setOpen] = useState(false);
+
   return (
-    <div className="chatbot-overlay">
-      <div className="chatbot-box">
-        <div className="chatbot-header">
-          <h3>AI Assistant</h3>
-          <button onClick={onClose}>✖</button>
-        </div>
-
-        <div className="chatbot-body">
-          <p>Hello 👋 I’m your AI assistant.</p>
-          <p>Ask me anything about your courses.</p>
-        </div>
-
-        <div className="chatbot-footer">
-          <input type="text" placeholder="Type your message..." />
-          <button>Send</button>
-        </div>
+    <>
+      {/* Floating Button */}
+      <div className="ai-float-btn" onClick={() => setOpen(true)}>
+        <Bot/>
       </div>
-    </div>
+
+      {/* Side Panel */}
+      {open && (
+        <div className="ai-panel">
+          <div className="ai-panel-header">
+            <span>AI Assistant</span>
+            <button onClick={() => setOpen(false)}>✖</button>
+          </div>
+
+          <div className="ai-panel-body">
+            <p>Hello 👋 I’m here to help you.</p>
+          </div>
+
+          <div className="ai-panel-footer">
+            <input placeholder="Ask something..." />
+            <button>Send</button>
+          </div>
+        </div>
+      )}
+    </>
   );
 }
 
-export default Chatbot;
+export default ChatBot;
+

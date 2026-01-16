@@ -16,7 +16,6 @@ function StudentDashboard() {
   // 🔹 progress state
   const [completion] = useState(65);
   const [coursesCompleted] = useState(12);
-
   const [learningTime] = useState(48);
 
   // chatBot 
