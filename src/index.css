@@ -1,0 +1,593 @@
+html,body {
+  font-family: 'arial', sans-serif;
+  height: 100%;
+  width: 100%;
+}
+
+/* SideBar CSS*/
+
+.dashboard-layout {
+  display: flex;
+   background: #F6F7FB;
+}
+
+.main-content { background-color: #F6F7FB;
+   margin-left: 190px; /* space for sidebar */ 
+   margin-top: 53px; /* space for header */ 
+   padding: 10px 30px 40px 30px; 
+   min-height: calc(100vh - 53px); 
+   width: calc(100vw - 53px); 
+   box-sizing: border-box;
+}
+
+/* --------------------
+   SIDEBAR CONTAINER
+-------------------- */
+.sidebar {
+  background-color: white;
+  box-shadow: 1px 0 0 #e5e7eb;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+
+  width: 180px;
+  padding: 12px;
+
+  z-index: 20;
+}
+
+/* --------------------
+   TOP SECTION
+-------------------- */
+.sidebar-top {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* --------------------
+   LOGO ROW
+-------------------- */
+.logo-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.logo-bg {
+  background: #0B4FA3;
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.logo {
+  width: 28px;
+  height: 28px;
+}
+
+.brand-name {
+  font-size: 16px;
+  font-weight: 600;
+  color: #111827;
+}
+
+/* --------------------
+   MENU ITEM
+-------------------- */
+.menu-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  width: 160px;
+  padding: 10px 12px;
+  border-radius: 12px;
+
+  color:  #9CA3AF;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.menu-item svg {
+  width: 22px;
+  height: 22px;
+}
+
+/* HOVER */
+.menu-item:hover {
+  background-color: #f1f5f9;
+  color:  #0B4FA3;
+}
+
+/* ACTIVE */
+.menu-item.active {
+  background-color: #ede9fe;
+  color:  #0B4FA3;
+  box-shadow: 0 4px 12px rgba(106, 17, 203, 0.25);
+}
+
+/* --------------------
+   BOTTOM PROFILE
+-------------------- */
+.sidebar-down {
+  display: flex;
+  justify-content: center;
+}
+
+.profile-logo {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+/* Header Css */
+
+.header {
+  color: #111827;
+  background-color: #ffffff;
+  border-bottom: 1px solid #e5e7eb;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  position: fixed;
+  left: 200px;   /* must match sidebar width */
+  top: 0;
+  right: 0;
+  height: 80px;
+  z-index: 10;
+}
+
+/* Title */
+.header h1 {
+  font-size: 20px;
+  font-weight: 600;
+  color: #111827;
+  margin-left: 15px;
+}
+
+/* AI Assistant button */
+.header button {
+  background-color: #0B4FA3;   /* purple like reference */
+  color: #FFFFFF;
+  margin-right: 15px;
+  border: none;
+  border-radius: 10px;
+
+  padding: 8px 14px;
+  font-size: 14px;
+  font-weight: 500;
+
+  cursor: pointer;
+  transition: all 0.2s ease;
+
+}
+
+/* hover effect */
+.header button:hover {
+  background-color: #093b79;
+}
+
+/* --------------------
+   CHATBOT
+-------------------- */
+.chatbot-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.3);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.chatbot-box {
+  width: 350px;
+  height: 450px;
+  background: white;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+}
+
+.chatbot-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 14px;
+  background: #6366f1;
+  color: white;
+}
+
+.chatbot-body {
+  flex: 1;
+  padding: 12px;
+  font-size: 14px;
+  overflow-y: auto;
+}
+
+.chatbot-footer {
+  display: flex;
+  padding: 10px;
+  border-top: 1px solid #ddd;
+}
+
+.chatbot-footer input {
+  flex: 1;
+  padding: 6px 8px;
+  border-radius: 6px;
+  border: 1px solid #ddd;
+}
+
+.chatbot-footer button {
+  margin-left: 6px;
+  padding: 6px 10px;
+}
+
+
+/**/
+/* ============================= */
+/* ===== Progress Section ===== */
+/* ============================= */
+
+.progress-section {
+  height: 200px;
+  padding: 15px;
+  margin-top: 20px;
+  border-radius: 10px;
+  /* background-color: #ffffff; */
+  /* box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.05); */
+}
+
+.progress-section h2 {
+  font-size: 16px;
+  font-weight: 600;
+  color: #6B7280;
+  margin: 0 0 12px 0;
+}
+
+/* ============================= */
+/* Cards Layout */
+/* ============================= */
+
+.progress-cards {
+  display: flex;
+  gap: 16px;
+}
+
+/* Each card */
+.progress-card {
+  flex: 1;
+  background: #ffffff;                 /* 🔥 white card */
+  border: 1px solid #e5e7eb;           /* subtle border */
+  border-radius: 12px;
+  padding: 16px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+  cursor: pointer;
+
+  transition: all 0.2s ease;
+}
+
+/* Row inside card (icon + value) */
+.progress-card-flex {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* ============================= */
+/* Text */
+/* ============================= */
+
+.progress-title {
+  font-size: 13px;
+  color: #6b7280;
+  margin-bottom: 6px;
+}
+
+.progress-value {
+  font-size: 30px;
+  font-weight: 700;
+}
+
+/* Icon */
+.progress-icon {
+  width: 30px;
+  height: 30px;
+}
+
+/* ============================= */
+/* Card Colors (icons & values only) */
+/* ============================= */
+
+/* Card 1: Completion */
+.progress-card:nth-child(1) .progress-icon {
+  color: #0B4FA3;
+}
+.progress-card:nth-child(1) .progress-value {
+  color:  #0B4FA3;     /* brand color */
+}
+
+/* Card 2: Courses */
+.progress-card:nth-child(2) .progress-icon {
+  color: #2563EB;
+}
+.progress-card:nth-child(2) .progress-value {
+  color:  #0B4FA3;     /* success green */
+}
+
+/* Card 3: Time */
+.progress-card:nth-child(3) .progress-icon {
+  color: #3B82F6;
+}
+.progress-card:nth-child(3) .progress-value {
+  color:  #0B4FA3;     /* info blue */
+}
+
+/* ============================= */
+/* Hover Effect */
+/* ============================= */
+
+.progress-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 18px rgba(0,0,0,0.08);
+  border-color: #d1d5db;
+}
+
+/* ============================= */
+/* Active Effect */
+/* ============================= */
+
+.progress-card.active {
+  border: 2px solid #3F3A5F;   /* brand highlight */
+}
+
+/* --------------------
+   COURSES HEADER
+-------------------- */
+.courses-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 25px 0 15px;
+}
+
+.course-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* --------------------
+   SEARCH BOX
+-------------------- */
+.search-box {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: white;
+  padding: 6px 10px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+}
+
+.search-box input {
+  border: none;
+  outline: none;
+  font-size: 14px;
+}
+
+/* --------------------
+   FILTER BUTTON
+-------------------- */
+.filter-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: #f1f5f9;
+  border: 1px solid #ddd;
+  padding: 6px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+/* --------------------
+   COURSE GRID
+-------------------- */
+.course-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+/* --------------------
+   COURSE CARD
+-------------------- */
+.course-card {
+  background: white;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  cursor: pointer;
+}
+
+.course-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.12);
+}
+
+/* --------------------
+   TOP GRADIENT
+-------------------- */
+.course-top {
+  height: 120px;
+  overflow: hidden;
+}
+
+.course-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;   /* fills nicely */
+}
+
+/* --------------------
+   BODY
+-------------------- */
+.course-body {
+  padding: 16px 18px 18px;
+}
+
+.course-body h3 {
+  margin: 8px 0 4px;
+  font-size: 16px;
+}
+
+.course-body p {
+  font-size: 13px;
+  color: #6b7280;
+  margin-bottom: 12px;
+}
+
+/* --------------------
+   PROGRESS BAR
+-------------------- */
+.progress-container {
+  background: #e5e7eb;
+  height: 6px;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.progress-line {
+  height: 100%;
+  border-radius: 10px;
+}
+
+.progress-line {
+  background: #0B4FA3;
+}
+
+/* --------------------
+   FOOTER
+-------------------- */
+.course-footer {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 8px;
+}
+
+.progress-text {
+  font-size: 12px;
+  color: #6b7280;
+}
+
+.progress-percent {
+  font-size: 12px;
+  font-weight: 600;
+  color: #111827;
+}
+
+/* ================= CHAT PAGE ================= */
+
+.chat-page {
+  display: flex;
+  flex-direction: column;
+  height: calc(100vh - 80px);
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+
+  overflow: hidden;
+}
+
+/* HEADER */
+.chat-header {
+  background-color: #0B4FA3;
+  padding: 30px 16px;
+  font-weight: 600;
+  border-bottom: 1px solid #0B4FA3;
+  color: white;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* BODY */
+.chat-body {
+  flex: 1;
+  padding: 16px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* MESSAGE */
+.chat-msg {
+  max-width: 70%;
+  padding: 10px 14px;
+  border-radius: 12px;
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+/* BOT */
+.chat-msg.bot {
+  background: #f1f5f9;
+  align-self: flex-start;
+}
+
+/* USER */
+.chat-msg.user {
+  background: #0B4FA3;
+  color: white;
+  align-self: flex-end;
+}
+
+/* FOOTER */
+.chat-footer {
+  display: flex;
+  padding: 10px;
+  border-top: 1px solid #e5e7eb;
+}
+
+.chat-footer input {
+  flex: 1;
+  padding: 8px 10px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+}
+
+.chat-footer button {
+  margin-left: 8px;
+  padding: 8px 14px;
+  border: none;
+  border-radius: 8px;
+  background: #0B4FA3;
+  color: white;
+  cursor: pointer;
+}
+
