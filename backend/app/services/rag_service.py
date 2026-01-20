@@ -3,6 +3,7 @@ from typing import List, Optional, Tuple
 import time
 
 from app.services.document_service import chunk_text
+from app.config import settings
 
 
 class SimpleRAGService:
@@ -68,10 +69,13 @@ class SimpleRAGService:
             # Combine relevant chunks
             context = "\n\n".join([chunk for _, chunk in relevant_chunks])
             
-            # Generate a simple response (in production, this would use an LLM)
-            response = f"Based on the documents you've uploaded, here is the relevant information:\n\n{context[:1500]}"
+            # Use configurable context max length
+            context_max_length = settings.RAG_CONTEXT_MAX_LENGTH
             
-            if len(context) > 1500:
+            # Generate a simple response (in production, this would use an LLM)
+            response = f"Based on the documents you've uploaded, here is the relevant information:\n\n{context[:context_max_length]}"
+            
+            if len(context) > context_max_length:
                 response += "\n\n... (more content available in the documents)"
         
         processing_time = int((time.time() - start_time) * 1000)

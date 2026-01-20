@@ -2,6 +2,7 @@
 from pydantic_settings import BaseSettings
 from functools import lru_cache
 import os
+import secrets
 
 
 class Settings(BaseSettings):
@@ -15,8 +16,8 @@ class Settings(BaseSettings):
     # Database
     DATABASE_URL: str = "sqlite+aiosqlite:///./sparktales.db"
     
-    # JWT
-    SECRET_KEY: str = "your-super-secret-key-change-in-production"
+    # JWT - No default value to force configuration
+    SECRET_KEY: str = secrets.token_urlsafe(32)
     ALGORITHM: str = "HS256"
     ACCESS_TOKEN_EXPIRE_MINUTES: int = 30
     
@@ -32,6 +33,10 @@ class Settings(BaseSettings):
     # RAG Settings
     CHUNK_SIZE: int = 1000
     CHUNK_OVERLAP: int = 200
+    RAG_CONTEXT_MAX_LENGTH: int = 1500
+    
+    # CORS Settings
+    CORS_ORIGINS: str = "http://localhost:3000,http://127.0.0.1:3000"
     
     class Config:
         env_file = ".env"
