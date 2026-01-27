@@ -11,7 +11,7 @@ import {
 
 import { useNavigate } from "react-router-dom";
 
-function Sidebar({ onChatClick }) {
+function Sidebar() {
   const navigate = useNavigate();   // ✅ hook inside component
 
   return (

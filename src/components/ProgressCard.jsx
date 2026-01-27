@@ -1,6 +1,6 @@
-import { BarChart3, Trophy, Clock } from "lucide-react";
+import { BarChart3, BookOpenText, Users } from "lucide-react";
 
-function ProgressCard({ completion, courses, time }) {
+function ProgressCard({ completion, courses, student }) {
   return (
     <div className="progress-section">
       {/* <h2>Your Progress</h2> */}
@@ -11,25 +11,25 @@ function ProgressCard({ completion, courses, time }) {
             <BarChart3 className="progress-icon" />
             <h3 className="progress-value">{completion}%</h3>
           </div>
-          <p className="progress-title">Overall Completion</p>
+          <p className="progress-title">Total Completion Rate</p>
         </div>
 
         {/* Card 2 */}
         <div className="progress-card">
           <div className="progress-card-flex">
-            <Trophy className="progress-icon" />
+            <BookOpenText className="progress-icon" />
             <h3 className="progress-value">{courses}</h3>
           </div>
-          <p className="progress-title">Courses Completed</p>
+          <p className="progress-title">Total Course</p>
         </div>
 
         {/* Card 3 */}
         <div className="progress-card">
           <div className="progress-card-flex">
-            <Clock className="progress-icon" />
-            <h3 className="progress-value">{time}h</h3>
+            <Users className="progress-icon" />
+            <h3 className="progress-value">{student}</h3>
           </div>
-          <p className="progress-title">Learning Time</p>
+          <p className="progress-title">Total Student</p>
         </div>
       </div>
     </div>

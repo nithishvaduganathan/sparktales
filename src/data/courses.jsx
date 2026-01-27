@@ -4,6 +4,7 @@ import cloudImg from "../assets/cloud.jpg"
 import aiImg from "../assets/ai.jpg"
 
 export const courses = [
+  
   {
     id: 1,
     title: "Machine Learning",
@@ -11,6 +12,7 @@ export const courses = [
     progress: 70,
     image: mlImg,
   },
+
   {
     id: 2,
     title: "Cloud Computing",
