@@ -6,20 +6,14 @@ import { courses } from "../data/courses";
 import CourseCard from "../components/CourseCard";
 import ProgressCard from "../components/ProgressCard";
 
-
-
-
 function StudentDashboard() {
   // search and Filter
   const [search, setSearch] = useState("");
 
   // 🔹 progress state
-  const [completion] = useState(65);
-  const [coursesCompleted] = useState(12);
-  const [learningTime] = useState(48);
-
-  // chatBot 
-  const [isChatOpen, setIsChatOpen] = useState(false);
+  const [totalcompletionRate] = useState(65);
+  const [totalCourses] = useState(12);
+  const [totalStudent] = useState(48);
 
   // this is used for filtering the course (Array Filtering)
   const filteredCourses = courses.filter((course) =>
@@ -28,16 +22,16 @@ function StudentDashboard() {
 
   return (
     <div className="dashboard-layout">
-      <Sidebar onChatClick={() => setIsChatOpen(true)} />
+      <Sidebar />
 
       <div className="main-content">
         <Header />
 
         {/* 🔹 Progress Section goes HERE */}
         <ProgressCard
-          completion={completion}
-          courses={coursesCompleted}
-          time={learningTime}
+          completion={totalcompletionRate}
+          courses={totalCourses}
+          student={totalStudent}
         />
 
         {/* 🔹 Courses Header Row */}
