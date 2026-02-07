@@ -12,8 +12,30 @@ from app.schemas import (
     CourseCreate, CourseUpdate, CourseResponse, CourseWithResources
 )
 from app.dependencies import get_current_user, get_current_admin, get_current_user_optional
+from app.services.s3 import S3Service
 
 router = APIRouter(prefix="/courses", tags=["Courses"])
+
+# Initialize S3 service
+s3_service = S3Service()
+
+
+def get_presigned_image_url(image_url: Optional[str]) -> Optional[str]:
+    """Convert S3 URL to presigned URL for image access"""
+    if not image_url:
+        return None
+    
+    # Extract key from S3 URL
+    # URL format: https://bucket.s3.region.amazonaws.com/key
+    try:
+        # Parse the S3 URL to get the key
+        if '.s3.' in image_url and '.amazonaws.com/' in image_url:
+            key = image_url.split('.amazonaws.com/')[1]
+            return s3_service.generate_presigned_download_url(key, expires_in=3600)
+    except Exception as e:
+        print(f"Error generating presigned URL: {e}")
+    
+    return image_url  # Return original if can't generate presigned
 
 
 @router.get("", response_model=List[CourseResponse])
@@ -53,6 +75,9 @@ async def get_courses(
     result = []
     for course in courses:
         course_data = CourseResponse.model_validate(course)
+        
+        # Convert image_url to presigned URL
+        course_data.image_url = get_presigned_image_url(course.image_url)
         
         if current_user:
             # Get user's progress for this course
@@ -96,6 +121,9 @@ async def get_course(
             )
     
     course_data = CourseWithResources.model_validate(course)
+    
+    # Convert image_url to presigned URL
+    course_data.image_url = get_presigned_image_url(course.image_url)
     
     # Add user progress if authenticated
     if current_user:

@@ -10,8 +10,27 @@ from app.database import get_db
 from app.models import User, UserProgress, Course, user_courses
 from app.schemas import ProgressUpdate, ProgressResponse, OverallProgress, CourseResponse
 from app.dependencies import get_current_user
+from app.services.s3 import S3Service
 
 router = APIRouter(prefix="/progress", tags=["Progress"])
+
+# Initialize S3 service
+s3_service = S3Service()
+
+
+def get_presigned_image_url(image_url):
+    """Convert S3 URL to presigned URL for image access"""
+    if not image_url:
+        return None
+    
+    try:
+        if '.s3.' in image_url and '.amazonaws.com/' in image_url:
+            key = image_url.split('.amazonaws.com/')[1]
+            return s3_service.generate_presigned_download_url(key, expires_in=3600)
+    except Exception as e:
+        print(f"Error generating presigned URL: {e}")
+    
+    return image_url
 
 
 @router.get("", response_model=OverallProgress)
@@ -66,6 +85,9 @@ async def get_enrolled_courses(
     result = []
     for course in enrolled_courses:
         course_data = CourseResponse.model_validate(course)
+        
+        # Convert image_url to presigned URL
+        course_data.image_url = get_presigned_image_url(course.image_url)
         
         # Get progress for this course
         progress = db.query(UserProgress).filter(
